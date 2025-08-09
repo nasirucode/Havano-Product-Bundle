@@ -137,13 +137,28 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Product Bundle": {
+		"on_update": "havano_product_bundle.havano_product_bundle.doctype.product_bundle_stock_operation.product_bundle_stock_operation.update_bundle_stock",
+		"validate": "havano_product_bundle.havano_product_bundle.doctype.product_bundle_stock_operation.product_bundle_stock_operation.validate_bundle_stock"
+	},
+	"Stock Entry": {
+		"on_submit": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_stock_entry",
+		"on_cancel": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_stock_entry_cancel"
+	},
+	"Material Request": {
+		"on_submit": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_material_request",
+		"on_cancel": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_material_request_cancel"
+	},
+	"Purchase Receipt": {
+		"on_submit": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_purchase_receipt",
+		"on_cancel": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_purchase_receipt_cancel"
+	},
+	"Purchase Invoice": {
+		"on_submit": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_purchase_invoice",
+		"on_cancel": "havano_product_bundle.havano_product_bundle.utils.stock_utils.handle_bundle_purchase_invoice_cancel"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
